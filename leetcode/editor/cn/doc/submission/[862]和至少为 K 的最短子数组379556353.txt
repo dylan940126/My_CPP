@@ -1,0 +1,21 @@
+class Solution {
+public:
+  int shortestSubarray(vector<int> &nums, int k) {
+    vector<int64_t> sum(nums.size() + 1);
+    for (int i = 0; i < nums.size(); ++i)
+      sum[i + 1] = sum[i] + nums[i];
+    int min_len = INT32_MAX;
+    deque<int> du;
+    du.push_back(0);
+    for (int i = 1; i < sum.size(); ++i) {
+      while (!du.empty() && sum[i] - sum[du.front()] >= k)
+        min_len = min(min_len, i - du.front()), du.pop_front();
+      while (!du.empty() && sum[i] <= sum[du.back()])
+        du.pop_back();
+      du.push_back(i);
+    }
+    return min_len == INT32_MAX ? -1 : min_len;
+  }
+};
+//runtime:204 ms
+//memory:102.3 MB

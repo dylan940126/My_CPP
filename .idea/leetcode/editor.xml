@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="LeetcodeEditor">
+    <option name="projectConfig">
+      <map>
+        <entry key="$USER_HOME$/AppData/Local/Temp/leetcode/editor/cn/[1]两数之和.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/doc/content/[1]two-sum.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[1]two-sum.cpp" />
+              <option name="titleSlug" value="two-sum" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/AppData/Local/Temp/leetcode/editor/cn/[862]和至少为 K 的最短子数组.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/doc/content/[862]和至少为 K 的最短子数组.md" />
+              <option name="frontendQuestionId" value="leetcode.cn862" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[862]和至少为 K 的最短子数组.cpp" />
+              <option name="titleSlug" value="shortest-subarray-with-sum-at-least-k" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[16]3sum-closest.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/doc/content/[16]3sum-closest.md" />
+              <option name="frontendQuestionId" value="leetcode.cn16" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[16]3sum-closest.cpp" />
+              <option name="titleSlug" value="3sum-closest" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[17]letter-combinations-of-a-phone-number.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/doc/content/[17]letter-combinations-of-a-phone-number.md" />
+              <option name="frontendQuestionId" value="leetcode.cn17" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[17]letter-combinations-of-a-phone-number.cpp" />
+              <option name="titleSlug" value="letter-combinations-of-a-phone-number" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[1812]determine-color-of-a-chessboard-square.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/doc/content/[1812]determine-color-of-a-chessboard-square.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1812" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[1812]determine-color-of-a-chessboard-square.cpp" />
+              <option name="titleSlug" value="determine-color-of-a-chessboard-square" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[18]4sum.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/doc/content/[18]4sum.md" />
+              <option name="frontendQuestionId" value="leetcode.cn18" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[18]4sum.cpp" />
+              <option name="titleSlug" value="4sum" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[1]two-sum.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/doc/content/[1]two-sum.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[1]two-sum.cpp" />
+              <option name="titleSlug" value="two-sum" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[4]median-of-two-sorted-arrays.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/doc/content/[4]median-of-two-sorted-arrays.md" />
+              <option name="frontendQuestionId" value="leetcode.cn4" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[4]median-of-two-sorted-arrays.cpp" />
+              <option name="titleSlug" value="median-of-two-sorted-arrays" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[4]寻找两个正序数组的中位数.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/doc/content/[4]median-of-two-sorted-arrays.md" />
+              <option name="frontendQuestionId" value="leetcode.cn4" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[4]median-of-two-sorted-arrays.cpp" />
+              <option name="titleSlug" value="median-of-two-sorted-arrays" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[5]longest-palindromic-substring.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/doc/content/[5]longest-palindromic-substring.md" />
+              <option name="frontendQuestionId" value="leetcode.cn5" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[5]longest-palindromic-substring.cpp" />
+              <option name="titleSlug" value="longest-palindromic-substring" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[6]zigzag-conversion.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/doc/content/[6]zigzag-conversion.md" />
+              <option name="frontendQuestionId" value="leetcode.cn6" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[6]zigzag-conversion.cpp" />
+              <option name="titleSlug" value="zigzag-conversion" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[862]shortest-subarray-with-sum-at-least-k.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/doc/content/[862]shortest-subarray-with-sum-at-least-k.md" />
+              <option name="frontendQuestionId" value="leetcode.cn862" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[862]shortest-subarray-with-sum-at-least-k.cpp" />
+              <option name="titleSlug" value="shortest-subarray-with-sum-at-least-k" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[862]和至少为 K 的最短子数组.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/doc/content/[862]shortest-subarray-with-sum-at-least-k.md" />
+              <option name="frontendQuestionId" value="leetcode.cn862" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LeetCode/leetcode/editor/cn/[862]shortest-subarray-with-sum-at-least-k.cpp" />
+              <option name="titleSlug" value="shortest-subarray-with-sum-at-least-k" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
