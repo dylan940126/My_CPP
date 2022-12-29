@@ -1,6 +1,4 @@
-#include <iostream>
-#include <fstream>
-#include "init.h"
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -8,6 +6,89 @@ class christmas {
 
     using pii = pair<int, int>;
     basic_ostream<char> &out;
+
+    struct shape {
+        vector<pii> points;
+
+        shape(const initializer_list<pii> &point) : points(point) {}
+    };
+
+    vector<shape> blocks{shape{{0, 0}, //+++
+                               {0, 1}, //+
+                               {0, 2}, //+
+                               {1, 0}, //
+                               {2, 0}},
+                         shape{{0, 0}, //++
+                               {0, 1}, // +
+                               {1, 1}, // +
+                               {2, 1}, // +
+                               {3, 1}},
+                         shape{{0, 0}, // +
+                               {1, -1},//++
+                               {1, 0}, // +
+                               {2, 0}, // +
+                               {3, 0}},
+                         shape{{0, 0}, // +
+                               {1, -1},//++
+                               {1, 0}, //+
+                               {2, -1},//+
+                               {3, -1}},
+                         shape{{0, 0}, //++
+                               {0, 1}, //+++
+                               {1, 0}, //
+                               {1, 1}, //
+                               {1, 2}},
+                         shape{{0, 0}, //+ +
+                               {0, 2}, //+++
+                               {1, 0}, //
+                               {1, 1}, //
+                               {1, 2}},
+                         shape{{0, 0}, // ++
+                               {0, 1}, // +
+                               {1, 0}, //++
+                               {2, -1},//
+                               {2, 0}},
+                         shape{{0, 0}, //++
+                               {0, 1}, //++
+                               {1, 0}, //++
+                               {1, 1}, //
+                               {2, 0}, //
+                               {2, 1}}};
+
+    vector<bool> reversible{false, true, true, true, true, false, true, false};
+    vector<bool> turnable{true, true, true, true, true, true, false, false};
+    vector<vector<int>> map{{-1, 0, 0, 0,  0,  0,  -1},
+                            {0,  0, 0, 0,  0,  0,  -1},
+                            {-1, 0, 0, 0,  0,  0,  0},
+                            {0,  0, 0, 0,  0,  0,  0},
+                            {0,  0, 0, 0,  0,  0,  0},
+                            {0,  0, 0, 0,  0,  0,  0},
+                            {0,  0, 0, -1, -1, -1, -1}};
+
+    int possibleRun(decltype(map) &_map_, int x, int y) {
+        if (x < 0 || x > 6 || y < 0 || y > 6 || _map_[x][y])
+            return 0;
+        int _ans_ = 1;
+        _map_[x][y] = 1;
+        _ans_ += possibleRun(_map_, x - 1, y);
+        _ans_ += possibleRun(_map_, x + 1, y);
+        _ans_ += possibleRun(_map_, x, y + 1);
+        _ans_ += possibleRun(_map_, x, y - 1);
+        return _ans_;
+    }
+
+    bool possible() {
+        auto _map_ = map;
+        for (int x = 0; x < 7; ++x)
+            for (int y = 0; y < 7; ++y) {
+                if (_map_[x][y])
+                    continue;
+                int tmp = possibleRun(_map_, x, y);
+                if (tmp < 5)
+                    return false;
+            }
+        return true;
+    }
 
     static pii cvt(const pii &start, const int dir, const pii &vec, bool reverse = false) {
         if (reverse)
@@ -116,8 +197,6 @@ int main() {
     ofstream file("./out.txt");
     christmas a(file);
     a.run();
-//    file << "\n\n\n\nans:";
-    int cnt = 0;
     for (auto i: a.ans) {
         file << "\n";
         a.printMap(i);
