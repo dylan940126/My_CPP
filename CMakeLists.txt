@@ -3,5 +3,5 @@ project(Clion)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(Clion main.cpp)
+add_executable(Christmas 2022Christmas/main.cpp)
 add_executable(LeetCode2 leetcode/editor/cn/[16]3sum-closest.cpp)
