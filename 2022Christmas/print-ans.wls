@@ -6,7 +6,7 @@
 (* :Date: 2022-12-29 *)
 
 Close[inp];
-inp = OpenRead["./out.txt"];
+inp = OpenRead["./ans.txt"];
 For[i = 0, True, i++,
   arr = {};
   For[j = 0, j < 7, j++,

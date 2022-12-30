@@ -5,7 +5,7 @@ ofstream file;
 
 int main() {
     ios::sync_with_stdio(false);
-    file.open("./out.txt");
+    file.open("./ans.txt");
     christmas a;
     a.setMap({"X.....X",
               "......X",
