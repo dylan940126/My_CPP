@@ -92,12 +92,23 @@ class christmas {
         return reg;
     }
 
+    vector<pii> place;
+
 
     vector<map_type> ans;
 
     unsigned long long width{}, height{};
 
 public:
+    double getProcess() {
+        double ret = 0, now = 1;
+        for (auto &i: place) {
+            now /= double(height * width);
+            ret += double(i.first * height + i.second) * now;
+        }
+        return ret;
+    }
+
     const vector<map_type> &getAns() const {
         return ans;
     }
@@ -147,8 +158,11 @@ public:
             return;
         }
         auto &now = blocks[idx];
-        if (!possible(now.size))
+        if (!possible(now.size)) {
+            if (idx < 4)
+                cout << '\r' << fixed << setprecision(1) << getProcess() * 100 << '%' << flush;
             return;
+        }
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; ++j) {
                 if (map[i][j])
@@ -161,9 +175,11 @@ public:
                         continue;
                     for (auto &regi: reg)
                         map[regi.first][regi.second] = idx + 1;
+                    place.emplace_back(i, j);
                     run(idx + 1);
                     for (auto &regi: reg)
                         map[regi.first][regi.second] = 0;
+                    place.pop_back();
                 }
                 if (rev != now.reversible) {
                     rev = true;
