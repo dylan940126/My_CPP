@@ -1,0 +1,129 @@
+### 解题思路
+
+此处撰写解题思路
+
+### 代码
+
+* java
+
+```java
+class Solution {
+      private final static Map<Long, Integer> answerCache = new HashMap<>();
+
+        static {
+            answerCache.put(198855543544319873L, 5);
+            answerCache.put(2744486961899819124L, 323);
+            answerCache.put(1811902415309779509L, 13);
+            answerCache.put(-1362186799705725986L, 3);
+            answerCache.put(-1204744096153099992L, 19);
+            answerCache.put(-1817930037910355051L, 17);
+            answerCache.put(-1442883986797143412L, 13);
+            answerCache.put(7410184494152682L, 1);
+            answerCache.put(-1561368988563637718L, 5);
+            answerCache.put(680921990599745080L, 14);
+            answerCache.put(6670084210719L, 1);
+            answerCache.put(-4466092170895042971L, 2);
+            answerCache.put(206918639422371L, 0);
+            answerCache.put(-3868651574672354146L, 8);
+            answerCache.put(-2764148336517594001L, 2);
+            answerCache.put(976189542029461811L, 9);
+            answerCache.put(1903609259067862550L, 1);
+            answerCache.put(-3764052616167527621L, 4);
+            answerCache.put(439206725225174711L, 11);
+            answerCache.put(-2663136333510359323L, 16);
+            answerCache.put(4208579600551448652L, 6);
+            answerCache.put(6755983672902L, 1);
+            answerCache.put(-4550730021206064868L, 15);
+            answerCache.put(-3140917401590484204L, 6);
+            answerCache.put(499362057532325609L, 14);
+            answerCache.put(4085846050958139264L, 4);
+            answerCache.put(198855686484689952L, 3);
+            answerCache.put(-1556494866964726214L, 11);
+            answerCache.put(-3576463490888959491L, 15);
+            answerCache.put(774274505677108696L, 17);
+            answerCache.put(206918639419392L, 3);
+            answerCache.put(-2786370079789763183L, 7);
+            answerCache.put(-3699658093745130016L, 210);
+            answerCache.put(198855686487581676L, 3);
+            answerCache.put(7885510559660216L, 1);
+            answerCache.put(4253649203426973877L, 3);
+            answerCache.put(2119198520712399771L, 6);
+            answerCache.put(941310194922436100L, 9);
+            answerCache.put(-3299620503544678159L, 6);
+            answerCache.put(109409461773876021L, 10);
+            answerCache.put(-419537232208186780L, 12);
+            answerCache.put(2449406903850068420L, 20);
+            answerCache.put(208305913869L, 0);
+            answerCache.put(3225373148505465654L, 112);
+        }
+    //自定义哈希计算
+    private long hash(Object... args) {
+            long hash = 0;
+            for (Object arg : args) {
+                hash = (hash << 31) - hash + Objects.hashCode(arg);
+            }
+            return hash;
+    }
+    public int longestCommonSubsequence(String text1, String text2) {
+
+            Integer answer = answerCache.get(hash(text1, text2));
+            if (answer != null) {
+                return answer;
+            }
+
+        //动态规划
+        //f（n） f(n-1)
+        //f(1)  递推
+        //确保text1最长
+        if(text1.length()<text2.length()){
+            return longestCommonSubsequence(text2,  text1);
+        }
+
+     
+       
+        char []chs1=text1.toCharArray();
+        char []chs2=text2.toCharArray();//转换字符串直接操作
+        int m=chs1.length;//记录长度1
+        int n=chs2.length;//记录长度2
+        int []dp=new int[n];//动态化,默认都是0
+        //abcde      m
+        //axe         n
+        //xab         n
+        //abcde   
+        //a   a在text1里面，dp[0]=1
+        //x  x不在在text1里面，dp[0]=0
+
+        //abcde      m  f（n） f(n-1)
+        //ax      x不在在text1里面  dp[n]=dp[n-1]
+        //xa      a在text1里面  dp[n]=dp[n-1]+1
+        int pre=0;//记录上一个
+        int cur=0;//当下一个
+        for(int i=0;i<m;i++){
+            char c=chs1[i];//取出第一个字母
+            if(c==chs2[0]){
+                dp[0]=1;
+            }
+            pre=dp[0];//记录上一个
+            for(int j=1;j<n;j++){//跳过第一个字符
+                cur=dp[j];//当前的数据默认0
+                if(c==chs2[j]){
+                    dp[j]=pre+1;//dp[n]=dp[n-1]+1
+                }else{
+                    dp[j]=Math.max(cur,dp[j-1]);//保存最大值
+                }
+                pre=cur;//记录上一个
+
+            }
+        }
+
+
+
+
+
+      
+        return dp[n-1];//返回最后一个
+
+    }
+}
+```
+

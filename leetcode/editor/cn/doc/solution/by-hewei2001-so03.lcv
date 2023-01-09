@@ -1,0 +1,137 @@
+## 1143. 最长公共子序列 (LCS)
+
+![O(nlogn)解法](https://pic.leetcode-cn.com/1664631984-IcFqJv-%E5%9B%BE%E7%89%87.png)
+
+[题目描述](https://leetcode.cn/problems/longest-common-subsequence/)：给定两个字符串，返回两个字符串的最长公共子序列长度，**子序列不需要连续**。
+
+---
+
+## 解题思路
+
+### 方法1：DP，$O(n^2)$
+
+用 $dp[i][j]$ 存储 $s1$ 的前 $i$ 个字符与 $s2$ 中的前 $j$ 个字符，返回 $dp[n][m]$，复杂度 $O(nm)$。
+$$
+dp[i][j]=\left\{ \begin{array}{c}
+dp\left[ i-1 \right] \left[ j-1 \right] +1 \,\,, & \mathrm{if}\left( s\left[ i-1 \right] =s\left[ j-1 \right] \right) \,\,\\
+\max \left( dp\left[ i \right] \left[ j-1 \right] , dp\left[ i-1 \right] \left[ j \right] \right) \,\,, &\mathrm{otherwise}\\
+\end{array} \right.
+$$
+
+---
+
+下面给出 C++ 代码：
+
+* cpp
+
+```cpp
+// 直接动态规划
+class Solution {
+public:
+    int longestCommonSubsequence(string text1, string text2) {
+        int n = text1.size(), m = text2.size();
+        vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
+        for(int i = 1; i <= n; i++){
+            for(int j = 1; j <= m; j++){
+                if(text1[i - 1] == text2[j - 1]){
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                }else{
+                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+        return dp[n][m];
+    }
+};
+```
+
+---
+
+#### 方法2：下标化，$O(n\log n)$
+
+用哈希表 + 向量记录 `s2` 中每个字符出现的下标，并用这些**下标的倒序**替换 `s1` 中对应字符，得到一个下标序列，求其**最长上升子序列**（LIS）即可得到答案。平均复杂度 $O(n \log n)$，当字符串**稠密重复**时退化到 $O(n^2 \log n)$。
+
+> 举例：$s1 = \{a,b,c,d,b\}$，$s2 =\{b,c,a,b\}$，则 $a$ 对应在 $s2$ 的下标为 $2$，$b$ 对应下标为 $\{0,3\}$，$c$ 对应序号为 $1$，$d$ 对应为空，**逆序**后生成的新序列为 $\{2, 3, 0, 1, 3, 0\}$，其最长上升子序列为 $\{0,1,3\}$，对应的公共子序列为 $\{b, c, b\}$。
+
+此处可以证明：s1、s2 的一个公共子序列和新序列的一个严格递增子序列一一对应。任意两个不同字符，如果能被选中作为公共子序列的一部分，其下标必严格递增。而之所以要逆序就是**防止同一个位置的字符被多次选中**。
+
+> 退化：$s1 = \{a,a,a,a,a\}$，$s2 =\{a,a,a,a\}$，则生成的新序列长度为 $n\times m$，还要再乘上 $\log(n\times m)$。当然如果确保无重复，则可以保证复杂度不退化。
+
+----
+
+下面给出 C++ 代码：
+
+* cpp
+
+```cpp
+// 下标化
+class Solution {
+public:
+    int longestCommonSubsequence(string text1, string text2) {
+        int n = text1.size(), m = text2.size();
+        // 用 26 个桶记录字母出现的下标
+        vector<vector<int>> buc(26, vector<int>());
+        vector<int> nums;
+        for(int i = 0; i < n; i++){
+            buc[text1[i] - 'a'].push_back(i);
+        }
+        // 逆序放入下标，得到一个数字序列 nums
+        for(int i = 0; i < m; i++){
+            for(auto it = buc[text2[i] - 'a'].rbegin(); it != buc[text2[i] - 'a'].rend(); it++){
+                nums.push_back(*it);
+            }
+        }
+        // 求 nums 的 LIS，用 贪心 + 二分 优化到 O(nlogn)
+        int nn = nums.size(), len = 0;
+        vector<int> d(nn, INT_MAX);
+        for(int i = 0; i < nn; i++){
+            int pos = lower_bound(d.begin(), d.begin() + len, nums[i]) - d.begin();
+            d[pos] = min(d[pos], nums[i]);
+            if(pos == len) len++;
+        }
+        return len;
+    }
+};
+```
+
+---
+
+## 附：LIS 解题思路
+
+[题目描述](https://leetcode.cn/problems/longest-increasing-subsequence/)：一个整数数组 `nums`，找到其中**最长严格递增子序列**的长度。（子序列可以不连续）
+
+### 方法1：DP
+
+定义 $dp[i]$ 为**以 $nums[i]$ 结尾的 LIS 长度**，每次从 $dp[j]$ 中找满足条件的最大值转移，复杂度 $O(n^2)$。
+$$
+d p[i]=\max (d p[j])+1 \text {, 其中 } 0 \leq j<i \text { 且 } n u m[j]<n u m[i]
+$$
+
+---
+
+### 方法2：贪心 + 二分查找
+
+要使 LIS 尽可能的长，就需要让**序列上升得尽可能慢**，因此我们希望每次在 LIS **末尾元素尽可能的小**。因此维护一个数组 $d[i]$ 表示长度为 $i$ 的 LIS 的**末尾元素的最小值**，每新来一个元素就将其**二分查找**到其可以放入的位置，并更新 $d$ 数组。复杂度 $O(n \log n)$。
+
+> 显然 $d[i]$ 是**单调严格递增**的，反证：如果 $d[i] \geqslant d[j]$ 但 $i < j$，则可以将 $d[j]$ 对应的 LIS 删除 $j-i$ 个数使其长度变为 $i$，但显然此时末尾元素满足 $d[i] \geqslant d[j] \geqslant d[i]'$，则 $d[i]$ 与其定义相矛盾。
+
+下面给出 C++ 代码：
+
+* cpp
+
+```cpp
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        int n = nums.size(), len = 0;
+        vector<int> d(n, INT_MAX);
+        for(int i = 0; i < n; i++){
+            int pos = lower_bound(d.begin(), d.begin() + len, nums[i]) - d.begin();
+            d[pos] = min(d[pos], nums[i]);
+            if(pos == len) len++;
+        }
+        return len;
+    }
+};
+```
+
