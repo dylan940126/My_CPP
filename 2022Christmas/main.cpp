@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include "christmas.h"
+
 using namespace std;
 ofstream file;
 
@@ -24,6 +25,7 @@ int main() {
     a.add_block({"++", "++", "++"}, true, true);
     a.init();
     a.run();
+    cout << "find out " << a.getAns().size() << " answers.";
     for (auto &i: a.getAns())
         file << i << '\n';
 }

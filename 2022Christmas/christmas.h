@@ -9,24 +9,10 @@
 
 using namespace std;
 
-using pii = pair<int, int>;
+using coord = pair<int, int>;
 using map_type = vector<vector<int>>;
 
 class christmas {
-    struct shape {
-        unsigned long long size;
-        bool reversible;
-        bool turnable;
-        vector<pii> points;
-
-        shape(const vector<pii> &points, bool reversible, bool turnable) : reversible(reversible),
-                                                                           turnable(turnable),
-                                                                           points(points),
-                                                                           size(points.size()) {}
-
-        explicit shape(const vector<pii> &point) : shape(point, true, true) {}
-    };
-
     inline int possibleRun(map_type &_map_, int x, int y) {
         if (x < 0 || x > 6 || y < 0 || y > 6 || _map_[x][y])
             return 0;
@@ -39,7 +25,7 @@ class christmas {
 
     inline bool possible(int min_size) {
         auto _map_ = map;
-        int ret = width * height;
+        int ret = xMax * yMax;
         for (int x = 0; x < 7; ++x)
             for (int y = 0; y < 7; ++y) {
                 if (_map_[x][y])
@@ -50,7 +36,7 @@ class christmas {
         return true;
     }
 
-    static inline pii cvt(const pii &start, const int dir, const pii &vec, bool reverse = false) {
+    static inline coord cvt(const coord &start, const int dir, const coord &vec, bool reverse = false) {
         if (reverse)
             switch (dir) {
                 case 0:
@@ -79,8 +65,8 @@ class christmas {
             }
     }
 
-    vector<pii> preprocessing(vector<pii> &now, int x, int y, int dir, bool rev) {
-        vector<pii> reg;
+    vector<coord> preprocessing(vector<coord> &now, int x, int y, int dir, bool rev) {
+        vector<coord> reg;
         for (const auto &regi: now) {
             auto ret = cvt({x, y}, dir, regi, rev);
             if (ret.first < 0 || ret.first > 6 || ret.second < 0 || ret.second > 6 ||
@@ -92,19 +78,31 @@ class christmas {
         return reg;
     }
 
-    vector<pii> place;
-
+    vector<coord> place;
 
     vector<map_type> ans;
 
-    unsigned long long width{}, height{};
+    unsigned long long xMax{}, yMax{};
 
 public:
+    struct shape {
+        unsigned long long size;
+        bool reversible;
+        bool turnable;
+        vector<coord> points;
+
+        shape(const vector<coord> &points, bool reversible, bool turnable) : reversible(reversible),
+                                                                             turnable(turnable),
+                                                                             points(points),
+                                                                             size(points.size()) {}
+
+        explicit shape(const vector<coord> &point) : shape(point, true, true) {}
+    };
     double getProcess() {
         double ret = 0, now = 1;
-        for (auto &i: place) {
-            now /= double(height * width);
-            ret += double(i.first * height + i.second) * now;
+        for (coord &i: place) {
+            now /= double(xMax * yMax);
+            ret += double(i.first * yMax + i.second) * now;
         }
         return ret;
     }
@@ -118,7 +116,7 @@ public:
 
     inline void add_block(vector<string> init_strings, bool line_symmetry, bool point_symmetry) {
         auto x0 = init_strings.front().find_first_of('+');
-        vector<pii> new_shape;
+        vector<coord> new_shape;
         for (int i = 0; i < init_strings.size(); ++i) {
             auto _i = init_strings[i];
             for (int j = 0; j < _i.size(); ++j) {
@@ -141,8 +139,8 @@ public:
             }
             christmas::map.emplace_back(map_line);
         }
-        height = map.size();
-        width = map.front().size();
+        yMax = map.size();
+        xMax = map.front().size();
     }
 
 //init operations before run
@@ -163,8 +161,8 @@ public:
                 cout << '\r' << fixed << setprecision(1) << getProcess() * 100 << '%' << flush;
             return;
         }
-        for (int i = 0; i < height; ++i) {
-            for (int j = 0; j < width; ++j) {
+        for (int i = 0; i < yMax; ++i) {
+            for (int j = 0; j < xMax; ++j) {
                 if (map[i][j])
                     continue;
                 bool rev = false;

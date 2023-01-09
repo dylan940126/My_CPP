@@ -5,7 +5,6 @@
 (* :Author: suen3 *)
 (* :Date: 2022-12-29 *)
 
-Close[inp];
 inp = OpenRead["./ans.txt"];
 For[i = 0, True, i++,
   arr = {};
@@ -15,7 +14,7 @@ For[i = 0, True, i++,
   If[in == EndOfFile, Break[], Null];
   out = ArrayPlot[arr,
     ColorRules -> {0 -> Gray, 1 -> Red, 2 -> Orange, 3 -> Yellow,
-      4 -> Green, 5 -> Blue, 6 -> Brown, 7 -> Magenta, 8 -> Cyan},
+      4 -> Green, 5 -> Blue, 6 -> Brown, 7 -> Magenta, 8 -> Cyan, 9 -> Pink},
     Mesh -> True];
   Export["./jpgs/out" <> ToString[i] <> ".png", out];
   Print["Finish " <> ToString[i]]
